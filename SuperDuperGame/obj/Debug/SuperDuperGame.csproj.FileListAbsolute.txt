@@ -1,0 +1,13 @@
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\bin\Debug\SuperDuperGame.exe.config
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\bin\Debug\SuperDuperGame.exe
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\bin\Debug\SuperDuperGame.pdb
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\bin\Debug\SuperDuperGame.Model.dll
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\bin\Debug\SuperDuperGame.Model.pdb
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.csproj.AssemblyReference.cache
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.Properties.Resources.resources
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.csproj.GenerateResource.cache
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.csproj.CoreCompileInputs.cache
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.csproj.CopyComplete
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.exe
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.pdb
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.Form1.resources

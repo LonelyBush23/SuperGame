@@ -1,0 +1,6 @@
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame.Model\bin\Debug\SuperDuperGame.Model.dll
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame.Model\bin\Debug\SuperDuperGame.Model.pdb
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame.Model\obj\Debug\SuperDuperGame.Model.csproj.AssemblyReference.cache
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame.Model\obj\Debug\SuperDuperGame.Model.csproj.CoreCompileInputs.cache
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame.Model\obj\Debug\SuperDuperGame.Model.dll
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame.Model\obj\Debug\SuperDuperGame.Model.pdb
