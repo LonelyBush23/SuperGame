@@ -43,6 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Barrier.cs" />
+    <Compile Include="Enemy.cs" />
+    <Compile Include="Lvl.cs" />
+    <Compile Include="Trap.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="GameModel.cs" />
     <Compile Include="Player.cs" />

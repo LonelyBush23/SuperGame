@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RoomView.cs" />
     <Compile Include="EssencesView.cs" />
     <Compile Include="Sprites.cs" />
     <Compile Include="Form1.cs">
@@ -92,12 +93,15 @@
       <Name>SuperDuperGame.Model</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Content Include="Resources\Map.png" />
+    <Content Include="Resources\TestAir.png" />
+    <Content Include="Resources\TestEmpty.png" />
+    <Content Include="Resources\TestEnemy.png" />
     <Content Include="Resources\TestPlayer.png" />
     <Content Include="Resources\TestRock.png" />
+    <Content Include="Resources\TestTrap.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets" Condition="Exists('..\packages\Microsoft.NETFramework.ReferenceAssemblies.net472.1.0.2\build\Microsoft.NETFramework.ReferenceAssemblies.net472.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

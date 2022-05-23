@@ -10,7 +10,10 @@ namespace SuperDuperGame.Model
     {
         Player,
         Barrier,
-        Null
+        Enemy,
+        Trap,
+        Air,
+        Empty
     }
 
     public class Essence
