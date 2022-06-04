@@ -8,7 +8,7 @@ namespace SuperDuperGame.Model
 {
     public class Room 
     {
-        public EssenceName[,] room { get; set; }
+        public Essence[,] room { get; set; }
         public int width { get; protected set; }
         public int height { get; protected set; }
 
@@ -16,13 +16,20 @@ namespace SuperDuperGame.Model
         {
             this.width = width*64;
             this.height = height*64;
-            room = new EssenceName[this.width, this.height];
+            room = new Essence[this.width, this.height];
 
             for (var i = 0; i < this.width; i+=64)
             for (var j = 0; j < this.height; j+=64)
             {
-                room[i, j] = EssenceName.Empty;
+                room[i, j] = new Empty();
             }
+        }
+
+        public void Move(Essence essence, int x, int y)
+        {
+            room[essence.PosX, essence.PosY] = new Floor();
+            room[essence.PosX + x, essence.PosY + y] = essence;
+            essence.Move(x , y);
         }
     }
 }

@@ -43,8 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Barrier.cs" />
+    <Compile Include="Soul.cs" />
+    <Compile Include="Wall.cs" />
+    <Compile Include="Floor.cs" />
+    <Compile Include="Empty.cs" />
+    <Compile Include="StepCount.cs" />
     <Compile Include="Enemy.cs" />
-    <Compile Include="Lvl.cs" />
+    <Compile Include="Lvls.cs" />
     <Compile Include="Trap.cs" />
     <Compile Include="Room.cs" />
     <Compile Include="GameModel.cs" />

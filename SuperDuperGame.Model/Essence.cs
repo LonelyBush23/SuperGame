@@ -8,12 +8,13 @@ namespace SuperDuperGame.Model
 {
     public enum EssenceName
     {
-        Player,
         Barrier,
         Enemy,
         Trap,
-        Air,
-        Empty
+        Floor,
+        Empty,
+        Wall,
+        Soul
     }
 
     public class Essence
@@ -21,7 +22,12 @@ namespace SuperDuperGame.Model
         public int PosX { get; private protected set; }
         public int PosY { get; private protected set; }
         public EssenceName EssenceName { get; private protected set; }
-        public int SpriteWidth { get; }
-        public int SpriteHeight { get; }
+
+        public void Move(int dirX, int dirY)
+        {
+            PosX += dirX;
+            PosY += dirY;
+        }
     }
+
 }

@@ -10,19 +10,22 @@ namespace SuperDuperGame.Model
 {
     public class Player : Essence
     {
+        private bool availabilityOfSoul = false;
         public Player (int x, int y)
         {
             PosX = x;
             PosY = y;
-            EssenceName = EssenceName.Player;
         }
 
-        public void Move (int dirX, int dirY)
+        public void AvailabilityOfSoulSetTrue()
         {
-            PosX += dirX;
-            PosY += dirY;
+            availabilityOfSoul = true;
         }
 
+        public bool HaveSoul()
+        {
+            return availabilityOfSoul;
+        }
     }
 }
 

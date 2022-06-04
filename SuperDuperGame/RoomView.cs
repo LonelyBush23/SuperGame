@@ -13,36 +13,62 @@ namespace SuperDuperGame
     class RoomView
     {
         private readonly Room room;
-        public Image AirSprite;
-        public Image EmptySprite;
+        private readonly string mapName;
+        public Sprites Sprites = new Sprites();
 
-        public RoomView(Room room, string sprite)
+
+        public RoomView(Room room, string mapName)
         {
             this.room = room;
-            AirSprite = new Bitmap(Path.Combine(
-                new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
-                sprite));
-            EmptySprite = new Bitmap(Path.Combine(
-                new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
-                new Sprites().empty));
-
+            this.mapName = mapName;
         }
 
-        public void View(Graphics e, EssencesView<Barrier> barrier, EssencesView<Trap> trapView, EssencesView<Enemy> enemyView)
+        public void View(Graphics e, List<EssenceView<Barrier>> barrierView, List<EssenceView<Trap>> trapView, TrapBehaviour trapBehaviour , List<EssenceView<Enemy>> enemyView)
         {
+            e.DrawImage(Sprites.MakeSprite(mapName), 0, 0);
             for (var i = 0; i < room.width; i+=64)
             for (var j = 0; j < room.height; j+=64)
             {
-                if (room.room[i,j] == EssenceName.Air)
-                    e.DrawImage(AirSprite, i, j);
-                if (room.room[i,j] == EssenceName.Barrier)
-                    e.DrawImage(barrier.sprite, i, j);
-                if (room.room[i, j] == EssenceName.Trap)
-                    e.DrawImage(trapView.sprite, i, j);
-                if (room.room[i, j] == EssenceName.Enemy)
-                    e.DrawImage(enemyView.sprite, i, j);
-                if (room.room[i, j] == EssenceName.Empty)
-                    e.DrawImage(EmptySprite, i, j);
+                if (room.room[i, j].EssenceName == EssenceName.Barrier)
+                {
+                    if (barrierView.Select(x => x).First(x => x.essence.PosX == i && x.essence.PosY == j).essence
+                            .BarrierWithTrap == true)
+                    {
+                        foreach (var trap in trapView)
+                        {
+                            e.DrawImage(trapBehaviour == TrapBehaviour.Open || trapBehaviour == TrapBehaviour.OpenAllTime ? trap.sprite : Sprites.MakeSprite(Sprites.trapSpriteS), i, j);
+                        }
+                    }
+                    e.DrawImage(
+                        barrierView.Select(x => x).First(x => x.essence.PosX == i && x.essence.PosY == j).sprite, i, j);
+                }
+
+                if (room.room[i, j].EssenceName == EssenceName.Trap)
+                {
+                    foreach (var trap in trapView)
+                    {
+                        e.DrawImage(trapBehaviour == TrapBehaviour.Open || trapBehaviour == TrapBehaviour.OpenAllTime ? trap.sprite : Sprites.MakeSprite(Sprites.trapSpriteS), i, j);
+                    }
+                }
+
+                if (room.room[i, j].EssenceName == EssenceName.Soul)
+                {
+                    e.DrawImage(Sprites.MakeSprite(Sprites.soul), i, j);
+                }
+
+                if (room.room[i, j].EssenceName == EssenceName.Enemy)
+                {
+                    if (enemyView.Select(x => x).First(x => x.essence.PosX == i && x.essence.PosY == j).essence
+                            .EnemyWithTrap == true)
+                    {
+                        foreach (var trap in trapView)
+                        {
+                            e.DrawImage(trapBehaviour == TrapBehaviour.Open || trapBehaviour == TrapBehaviour.OpenAllTime ? trap.sprite : Sprites.MakeSprite(Sprites.trapSpriteS), i, j);
+                        }
+                    }
+                    e.DrawImage(enemyView.Select(x => x).First(x => x.essence.PosX == i && x.essence.PosY == j).sprite,
+                        i, j);
+                }
             }
         }
     }

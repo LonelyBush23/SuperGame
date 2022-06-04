@@ -8,8 +8,9 @@ namespace SuperDuperGame
 {
     public class EssenceView<T> where T : Essence
     {
-        private readonly T essence;
+        public readonly T essence;
         public Image sprite;
+        public bool DirectionRight = true;
 
         public EssenceView(T essence, string sprite)
         {
@@ -20,8 +21,15 @@ namespace SuperDuperGame
         }
 
         public void View(Graphics e)
-        {
-           e.DrawImage(sprite, essence.PosX, essence.PosY);
+        { 
+            if (DirectionRight)
+                e.DrawImage(sprite, essence.PosX, essence.PosY);
+            else
+            {
+                sprite.RotateFlip(RotateFlipType.Rotate180FlipY);
+                e.DrawImage(sprite, essence.PosX, essence.PosY);
+                sprite.RotateFlip(RotateFlipType.Rotate180FlipY);
+            }
         }
     }
 }

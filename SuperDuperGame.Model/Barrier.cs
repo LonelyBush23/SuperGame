@@ -9,18 +9,12 @@ namespace SuperDuperGame.Model
 {
     public class Barrier : Essence
     {
+        public bool BarrierWithTrap;
         public Barrier(int x, int y)
         {
             PosX = x;
             PosY = y;
             EssenceName = EssenceName.Barrier;
         }
-
-        public void MoveByPush(int dirX, int dirY)
-        {
-            PosX += dirX;
-            PosY += dirY;
-        }
-
     }
 }

@@ -8,16 +8,12 @@ namespace SuperDuperGame.Model
 {
     public class Enemy : Essence
     {
+        public bool EnemyWithTrap;
         public Enemy(int x, int y)
         {
             PosX = x;
             PosY = y;
-        }
-
-        public void MoveByPush(int dirX, int dirY)
-        {
-            PosX += dirX;
-            PosY += dirY;
+            EssenceName = EssenceName.Enemy;
         }
     }
 }

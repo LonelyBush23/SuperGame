@@ -10,4 +10,7 @@ C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\Su
 C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.csproj.CopyComplete
 C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.exe
 C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.pdb
-C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.Form1.resources
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.Game.resources
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.MainMenu.resources
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.LvlMenu.resources
+C:\Users\66ava\LonelyBush\MyGame\Code\SuperDuperGame\SuperDuperGame\obj\Debug\SuperDuperGame.PauseMenu.resources
