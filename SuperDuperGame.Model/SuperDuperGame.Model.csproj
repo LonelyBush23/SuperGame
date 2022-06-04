@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Barrier.cs" />
+    <Compile Include="GameBarrier.cs" />
     <Compile Include="Soul.cs" />
     <Compile Include="Wall.cs" />
     <Compile Include="Floor.cs" />

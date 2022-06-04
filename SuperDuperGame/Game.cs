@@ -10,16 +10,26 @@ using System.Windows.Forms;
 using System.Reflection;
 using System.IO;
 using SuperDuperGame.Model;
+using System.Threading;
+using System.Media;
 using KeyEventArgs = System.Windows.Forms.KeyEventArgs;
+using WMPLib;
 
 namespace SuperDuperGame
 {
     partial class Game : Form
     {
+        public static WindowsMediaPlayer gameSong = new WindowsMediaPlayer();
+        private SoundPlayer playerNoise = new SoundPlayer(Path.Combine(
+                new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
+                "Resources\\Music\\Go.wav"));
+        private SoundPlayer rockNoise = new SoundPlayer(Path.Combine(
+                new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
+                "Resources\\Music\\Stone.wav"));
         private int TimerTick = 0;
         private int MoveTimerTick = 0;
         private readonly Sprites sprites = new Sprites();
-        private readonly List<EssenceView<Barrier>> barrierView = new List<EssenceView<Barrier>>();
+        private readonly List<EssenceView<GameBarrier>> barrierView = new List<EssenceView<GameBarrier>>();
         private readonly List<EssenceView<Trap>> trapView = new List<EssenceView<Trap>>();
         private readonly List <EssenceView<Enemy>> enemyView = new List<EssenceView<Enemy>>();
         private EssenceView<Player> playerView;
@@ -46,6 +56,15 @@ namespace SuperDuperGame
             InitializeComponent();
             Init();
             Timer();
+            CreateMusic();
+        }
+
+        private void CreateMusic()
+        {
+            gameSong.URL = Path.Combine(
+                new DirectoryInfo(Directory.GetCurrentDirectory()).Parent.Parent.FullName,
+                "Resources\\Music\\Song2.wav");
+            gameSong.controls.play();
         }
 
          private void Timer()
@@ -56,9 +75,9 @@ namespace SuperDuperGame
 
          private void Update(object sender, EventArgs e)
          {
-             if (gameModel.StepCount.stepCount <= 0)
+            if (gameModel.StepCount.stepCount <= 0)
                  GameOver();
-            if (TimerTick > 100)
+            if (gameModel.Player.HaveSoul() && TimerTick > 300)
             {
                 GoNextLvl();
             }
@@ -67,10 +86,11 @@ namespace SuperDuperGame
 
         public void Init()
         {
+            this.FormBorderStyle = FormBorderStyle.None;
             gameModel = new GameModel(posPlayer, roomSize, map, stepCount, trapBehaviour);
             playerView = new EssenceView<Player>(gameModel.Player, sprites.player1);
             foreach (var barrier in gameModel.Barriers)
-                barrierView.Add(new EssenceView<Barrier>(barrier, sprites.barrierSpriteS));
+                barrierView.Add(new EssenceView<GameBarrier>(barrier, sprites.barrierSpriteS));
             foreach (var enemy in gameModel.Enemys)
                 enemyView.Add(new EssenceView<Enemy>(enemy, sprites.enemy1));
             foreach (var trap in gameModel.Traps)
@@ -173,22 +193,26 @@ namespace SuperDuperGame
                 case Keys.R:
                 {
                     timer1.Stop();
-                    this.Close();
+                    gameSong.controls.stop();
                     var lvl1 = new Game(posPlayer, roomSize, map, stepCount, trapBehaviour, mapName);
                     lvl1.Show();
+                    this.Close();
                 }
                     break;
 
                 case Keys.Escape:
                 {
                         timer1.Stop();
+                        gameSong.controls.pause();
                         var pauseMenu = new PauseMenu();
-                        pauseMenu.Show();
-                }
+                        pauseMenu.ShowDialog();
+                        timer1.Start();
+                    }
                     break;
             }
             if (MoveTimerTick > 6)
             {
+                playerNoise.Play();
                 var currentPos = new Point(gameModel.Player.PosX, gameModel.Player.PosY);
                 switch (e.KeyCode)
                 {
@@ -217,6 +241,7 @@ namespace SuperDuperGame
 
                         if (gameModel.Room.room[nextPos.X, nextPos.Y].EssenceName == EssenceName.Barrier)
                         {
+                                rockNoise.Play();
                             if (gameModel.Room.room[nextPos.X + 64, nextPos.Y].EssenceName == EssenceName.Barrier ||
                                 gameModel.Room.room[nextPos.X + 64, nextPos.Y].EssenceName == EssenceName.Wall)
                                 gameModel.Player.Move(0, 0);
@@ -335,6 +360,7 @@ namespace SuperDuperGame
 
                         if (gameModel.Room.room[nextPos.X, nextPos.Y].EssenceName == EssenceName.Barrier)
                         {
+                                rockNoise.Play();
                             if (gameModel.Room.room[nextPos.X - 64, nextPos.Y].EssenceName == EssenceName.Barrier ||
                                 gameModel.Room.room[nextPos.X - 64, nextPos.Y].EssenceName == EssenceName.Wall)
                                 gameModel.Player.Move(0, 0);
@@ -448,6 +474,7 @@ namespace SuperDuperGame
 
                         if (gameModel.Room.room[nextPos.X, nextPos.Y].EssenceName == EssenceName.Barrier)
                         {
+                                rockNoise.Play();
                             if (gameModel.Room.room[nextPos.X, nextPos.Y - 64].EssenceName == EssenceName.Barrier ||
                                 gameModel.Room.room[nextPos.X, nextPos.Y - 64].EssenceName == EssenceName.Wall)
                                 gameModel.Player.Move(0, 0);
@@ -562,6 +589,7 @@ namespace SuperDuperGame
 
                         if (gameModel.Room.room[nextPos.X, nextPos.Y].EssenceName == EssenceName.Barrier)
                         {
+                                rockNoise.Play();
                             if (gameModel.Room.room[nextPos.X, nextPos.Y + 64].EssenceName == EssenceName.Barrier ||
                                 gameModel.Room.room[nextPos.X, nextPos.Y + 64].EssenceName == EssenceName.Wall)
                                 gameModel.Player.Move(0, 0);
@@ -660,6 +688,7 @@ namespace SuperDuperGame
         protected void GameOver()
         {
             timer1.Stop();
+            gameSong.controls.stop();
             var lvl1 = new Game(posPlayer, roomSize, map, stepCount, trapBehaviour, mapName);
             lvl1.Show();
             this.Close();
@@ -668,6 +697,7 @@ namespace SuperDuperGame
         protected void GoNextLvl()
         {
             timer1.Stop();
+            gameSong.controls.stop();
             if (mapName == sprites.lvl1)
             {
                 var lvl2 = new Game(new Point(448, 384), new Point(20, 10), lvl.lvl2, 34, TrapBehaviour.OpenAllTime, sprites.lvl2);
@@ -677,6 +707,7 @@ namespace SuperDuperGame
             {
                 var lvlMenu = Application.OpenForms[1];
                 lvlMenu.Show();
+                MainMenu.song.controls.play();
             }
             this.Close();
         }

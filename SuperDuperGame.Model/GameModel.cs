@@ -13,7 +13,7 @@ namespace SuperDuperGame.Model
         public Player Player { get; set; }
         public List<Enemy> Enemys = new List<Enemy>();
         public List<Trap> Traps = new List<Trap>();
-        public List<Barrier> Barriers = new List<Barrier>();
+        public List<GameBarrier> Barriers = new List<GameBarrier>();
         public TrapBehaviour TrapsBehaviour;
         public Room Room { get; set; }
         public StepCount StepCount { get; set; }
@@ -49,8 +49,8 @@ namespace SuperDuperGame.Model
 
                 if (map[dj, di] == 5)
                 {
-                    Room.room[i, j] = new Barrier(i, j);
-                    Barriers.Add(new Barrier(i,j));
+                    Room.room[i, j] = new GameBarrier(i, j);
+                    Barriers.Add(new GameBarrier(i,j));
                 }
 
                 if (map[dj, di] == 3)
@@ -70,8 +70,8 @@ namespace SuperDuperGame.Model
                 }
                 if (map[dj, di] == 7)
                 {
-                    Room.room[i, j] = new Barrier(i, j) {BarrierWithTrap = true};
-                    Barriers.Add(new Barrier(i, j));
+                    Room.room[i, j] = new GameBarrier(i, j) {BarrierWithTrap = true};
+                    Barriers.Add(new GameBarrier(i, j));
                     Traps.Add(new Trap(i, j));
                 }
             }

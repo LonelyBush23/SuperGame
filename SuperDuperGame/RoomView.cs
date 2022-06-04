@@ -23,7 +23,7 @@ namespace SuperDuperGame
             this.mapName = mapName;
         }
 
-        public void View(Graphics e, List<EssenceView<Barrier>> barrierView, List<EssenceView<Trap>> trapView, TrapBehaviour trapBehaviour , List<EssenceView<Enemy>> enemyView)
+        public void View(Graphics e, List<EssenceView<GameBarrier>> barrierView, List<EssenceView<Trap>> trapView, TrapBehaviour trapBehaviour , List<EssenceView<Enemy>> enemyView)
         {
             e.DrawImage(Sprites.MakeSprite(mapName), 0, 0);
             for (var i = 0; i < room.width; i+=64)
