@@ -102,17 +102,22 @@ namespace SuperDuperGame
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            roomView.View(e.Graphics, barrierView, trapView, gameModel.TrapsBehaviour ,enemyView);
-            if (gameModel.Player.HaveSoul())
-            {
-                PlayEndnimation();
-            }
+            if (gameModel.Player.HaveSoul() && TimerTick > 100)
+                e.Graphics.DrawImage(sprites.MakeSprite("Resources\\Background\\Lvl2.png"), 0, 0);
             else
             {
-                PlayStandartAnimation(e.Graphics);
+                roomView.View(e.Graphics, barrierView, trapView, gameModel.TrapsBehaviour, enemyView);
+                if (gameModel.Player.HaveSoul())
+                {
+                    PlayEndnimation();
+                }
+                else
+                {
+                    PlayStandartAnimation(e.Graphics);
+                }
+                playerView.View(e.Graphics);
+                label1.Text = "Count: " + gameModel.StepCount.stepCount.ToString();
             }
-            playerView.View(e.Graphics);
-            label1.Text = "Count: " + gameModel.StepCount.stepCount.ToString();
         }
 
         public void PlayEndnimation()
@@ -142,47 +147,55 @@ namespace SuperDuperGame
 
         public void PlayStandartAnimation(Graphics e)
         {
-            if (TimerTick == 1)
+            if (playerView.move )
             {
-                foreach (var enemy in enemyView)
-                {
-                   enemy.sprite = sprites.MakeSprite(sprites.enemy1);
-                }
-                playerView.sprite = sprites.MakeSprite(sprites.player1);
+                playerView.sprite = sprites.MakeSprite(sprites.player4);
+                playerView.move = false;
             }
+            else
+            {
+                if (TimerTick > 1)
+                {
+                    foreach (var enemy in enemyView)
+                    {
+                        enemy.sprite = sprites.MakeSprite(sprites.enemy1);
+                    }
+                    playerView.sprite = sprites.MakeSprite(sprites.player1);
+                }
 
-            if (TimerTick == 11)
-            {
-                foreach (var enemy in enemyView)
+                if (TimerTick > 11)
                 {
-                    enemy.sprite = sprites.MakeSprite(sprites.enemy2);
+                    foreach (var enemy in enemyView)
+                    {
+                        enemy.sprite = sprites.MakeSprite(sprites.enemy2);
+                    }
+                    playerView.sprite = sprites.MakeSprite(sprites.player2);
                 }
-                playerView.sprite = sprites.MakeSprite(sprites.player2);
-            }
-            if (TimerTick == 21)
-            {
-                foreach (var enemy in enemyView)
+                if (TimerTick > 21)
                 {
-                    enemy.sprite = sprites.MakeSprite(sprites.enemy3);
+                    foreach (var enemy in enemyView)
+                    {
+                        enemy.sprite = sprites.MakeSprite(sprites.enemy3);
+                    }
+                    playerView.sprite = sprites.MakeSprite(sprites.player3);
                 }
-                playerView.sprite = sprites.MakeSprite(sprites.player3);
-            }
-            if (TimerTick == 31)
-            {
-                foreach (var enemy in enemyView)
+                if (TimerTick > 31)
                 {
-                    enemy.sprite = sprites.MakeSprite(sprites.enemy2);
+                    foreach (var enemy in enemyView)
+                    {
+                        enemy.sprite = sprites.MakeSprite(sprites.enemy2);
+                    }
+                    playerView.sprite = sprites.MakeSprite(sprites.player2);
                 }
-                playerView.sprite = sprites.MakeSprite(sprites.player2);
-            }
-            if (TimerTick == 41)
-            {
-                foreach (var enemy in enemyView)
+                if (TimerTick > 41)
                 {
-                    enemy.sprite = sprites.MakeSprite(sprites.enemy1);
+                    foreach (var enemy in enemyView)
+                    {
+                        enemy.sprite = sprites.MakeSprite(sprites.enemy1);
+                    }
+                    playerView.sprite = sprites.MakeSprite(sprites.player1);
+                    TimerTick = 1;
                 }
-                playerView.sprite = sprites.MakeSprite(sprites.player1);
-                TimerTick = 1;
             }
         }
 
@@ -210,9 +223,10 @@ namespace SuperDuperGame
                     }
                     break;
             }
-            if (MoveTimerTick > 6)
+            if (MoveTimerTick > 5)
             {
                 playerNoise.Play();
+                playerView.move = true;
                 var currentPos = new Point(gameModel.Player.PosX, gameModel.Player.PosY);
                 switch (e.KeyCode)
                 {
@@ -332,7 +346,7 @@ namespace SuperDuperGame
                             EssenceName.Trap && (gameModel.TrapsBehaviour == TrapBehaviour.Open ||
                                                  gameModel.TrapsBehaviour == TrapBehaviour.OpenAllTime))
                             gameModel.StepCount.StepCountDown();
-                        playerView.sprite = sprites.MakeSprite(sprites.player4);
+                            //TimerTick = 0;
                         gameModel.StepCount.StepCountDown();
                         break;
                     }
@@ -446,7 +460,8 @@ namespace SuperDuperGame
                             EssenceName.Trap && (gameModel.TrapsBehaviour == TrapBehaviour.Open ||
                                                  gameModel.TrapsBehaviour == TrapBehaviour.OpenAllTime))
                             gameModel.StepCount.StepCountDown();
-                        playerView.sprite = sprites.MakeSprite(sprites.player4);
+                        //playerView.sprite = sprites.MakeSprite(sprites.player4);
+                            //TimerTick = 0;
                         gameModel.StepCount.StepCountDown();
                         break;
                     }
@@ -560,7 +575,8 @@ namespace SuperDuperGame
                             EssenceName.Trap && (gameModel.TrapsBehaviour == TrapBehaviour.Open ||
                                                  gameModel.TrapsBehaviour == TrapBehaviour.OpenAllTime))
                             gameModel.StepCount.StepCountDown();
-                        playerView.sprite = sprites.MakeSprite(sprites.player4);
+                        //playerView.sprite = sprites.MakeSprite(sprites.player4);
+                            //TimerTick = 0;
                         gameModel.StepCount.StepCountDown();
                         break;
                     }
@@ -676,7 +692,8 @@ namespace SuperDuperGame
                             EssenceName.Trap && (gameModel.TrapsBehaviour == TrapBehaviour.Open ||
                                                  gameModel.TrapsBehaviour == TrapBehaviour.OpenAllTime))
                             gameModel.StepCount.StepCountDown();
-                        playerView.sprite = sprites.MakeSprite(sprites.player4);
+                        //playerView.sprite = sprites.MakeSprite(sprites.player4);
+                            //TimerTick = 0;
                         gameModel.StepCount.StepCountDown();
                         break;
                     }

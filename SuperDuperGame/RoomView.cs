@@ -13,7 +13,7 @@ namespace SuperDuperGame
     class RoomView
     {
         private readonly Room room;
-        private readonly string mapName;
+        public string mapName;
         public Sprites Sprites = new Sprites();
 
 

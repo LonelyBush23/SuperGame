@@ -63,6 +63,16 @@ namespace SuperDuperGame.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _111 {
+            get {
+                object obj = ResourceManager.GetObject("111", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _20D04FE0_3AEA_1069_A2D8_08002B30309D_ {
             get {
                 object obj = ResourceManager.GetObject("{20D04FE0-3AEA-1069-A2D8-08002B30309D}", resourceCulture);

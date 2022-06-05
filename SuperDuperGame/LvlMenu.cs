@@ -39,10 +39,30 @@ namespace SuperDuperGame
 
         private void вМеню_Click(object sender, EventArgs e)
         {
-            var mainMenu = Application.OpenForms[0];
-            mainMenu.Show();
+            FadeOut(0);
             Close();
+            var mainMenu = Application.OpenForms[0];
+            mainMenu.Opacity = 0;
+            mainMenu.Show();
+            FadeIn(mainMenu, 0);
         }
 
+        private void FadeIn(Form o, int speed)
+        {
+            for (int i = 0; i <= 100; i++)
+            {
+                o.Opacity = i / 100.0;
+                System.Threading.Thread.Sleep(speed);//чем меньше число, тем быстрее появится
+            }
+        }
+
+        private void FadeOut(int speed)
+        {
+            for (int i = 100; i >= 0; i--)
+            {
+                Opacity = i / 100.0;
+                System.Threading.Thread.Sleep(speed); //чем меньше число, тем быстрее исчезнет
+            }
+        }
     }
 }

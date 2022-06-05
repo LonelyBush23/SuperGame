@@ -11,6 +11,7 @@ namespace SuperDuperGame
         public readonly T essence;
         public Image sprite;
         public bool DirectionRight = true;
+        public bool move = false;
 
         public EssenceView(T essence, string sprite)
         {

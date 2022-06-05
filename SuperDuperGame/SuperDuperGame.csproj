@@ -137,6 +137,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\111.gif" />
     <Content Include="Resources\Background\Lvl1.png" />
     <Content Include="Resources\Background\Lvl2.png" />
     <Content Include="Resources\Enemy\Enemy1.png" />
